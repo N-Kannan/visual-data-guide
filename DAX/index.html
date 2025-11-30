@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAX Masterclass | Roadmap</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* --- PAGE SPECIFIC STYLES --- */
+  
+  /* Hero Section */
+  .hero {
+    text-align: center; padding: 4rem 1rem 2rem;
+  }
+  .hero h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: var(--accent); }
+  .hero p { color: var(--text-dim); font-size: 1.1rem; }
+
+  /* Grid Layout for Categories */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* Category Card */
+  .cat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .cat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    border-color: var(--accent);
+  }
+
+  /* Category Header */
+  .cat-header {
+    display: flex; align-items: center; gap: 0.8rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem; margin-bottom: 1rem;
+  }
+  .cat-icon { 
+    font-size: 1.5rem; background: rgba(255,255,255,0.05); 
+    width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    border-radius: 0.5rem; 
+  }
+  .cat-title { font-weight: 700; font-size: 1.1rem; color: #fff; }
+
+  /* Links List */
+  .link-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  /* Lesson Links */
+  a.lesson-btn {
+    display: flex; justify-content: space-between; align-items: center;
+    text-decoration: none;
+    background: rgba(0,0,0,0.2);
+    color: var(--text-dim);
+    padding: 0.7rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-family: 'Consolas', monospace;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+
+  /* Active (Completed) Lesson Style */
+  a.lesson-btn.active {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.05);
+    color: #fff;
+  }
+  a.lesson-btn:hover {
+    border-color: var(--accent);
+    color: #fff;
+    background: rgba(14, 165, 233, 0.1);
+    transform: translateX(3px);
+  }
+
+  /* Status Indicator */
+  .status-dot { font-size: 0.8rem; opacity: 0.5; }
+  a.lesson-btn.active .status-dot { opacity: 1; }
+
+</style>
+</head>
+<body>
+
+  <header></header>
+
+  <div class="hero">
+    <h1>The 8 Pillars of DAX</h1>
+    <p>Select a formula to visualize how it works step-by-step.</p>
+  </div>
+
+  <div class="roadmap-grid">
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">∑</div>
+        <div class="cat-title">01. Aggregation</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn active" href="01_Aggregation/01_sum_vs_sumx.html">
+          SUM vs SUMX <span class="status-dot">✅</span>
+        </a>
+        <a class="lesson-btn" href="01_Aggregation/02_average.html">AVERAGE / AVERAGEA <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="01_Aggregation/03_min_max.html">MIN / MAX <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="01_Aggregation/04_count_rows.html">COUNT / COUNTROWS <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="01_Aggregation/05_distinctcount.html">DISTINCTCOUNT <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">🔍</div>
+        <div class="cat-title">02. Filter Context</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="02_Filters/01_calculate.html">CALCULATE <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="02_Filters/02_filter.html">FILTER <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="02_Filters/03_all_allexcept.html">ALL / ALLEXCEPT <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="02_Filters/04_values_distinct.html">VALUES vs DISTINCT <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="02_Filters/05_related.html">RELATED <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">📅</div>
+        <div class="cat-title">03. Time Intelligence</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="03_Time/01_totalytd.html">TOTALYTD <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="03_Time/02_sameperiodlastyear.html">SAMEPERIODLASTYEAR <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="03_Time/03_dateadd.html">DATEADD <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="03_Time/04_datesinperiod.html">DATESINPERIOD <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="03_Time/05_parallelperiod.html">PARALLELPERIOD <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="03_Time/06_calendar.html">CALENDAR / AUTO <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">⚖️</div>
+        <div class="cat-title">04. Logical</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="04_Logical/01_if.html">IF / Nested IF <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="04_Logical/02_switch.html">SWITCH <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="04_Logical/03_logic_gates.html">AND / OR / NOT <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="04_Logical/04_iferror.html">IFERROR <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">ℹ️</div>
+        <div class="cat-title">05. Information</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="05_Information/01_isblank.html">ISBLANK <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="05_Information/02_hasonevalue.html">HASONEVALUE <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="05_Information/03_isfiltered.html">ISFILTERED <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="05_Information/04_iscrossfiltered.html">ISCROSSFILTERED <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="05_Information/05_userelationship.html">USERELATIONSHIP <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">Aa</div>
+        <div class="cat-title">06. Text Functions</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="06_Text/01_concatenate.html">CONCATENATE & X <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="06_Text/02_substrings.html">LEFT / RIGHT / MID <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="06_Text/03_len.html">LEN <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="06_Text/04_casing.html">UPPER / LOWER <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="06_Text/05_search.html">SEARCH <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">➗</div>
+        <div class="cat-title">07. Math & Stats</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="07_Math/01_divide.html">DIVIDE <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="07_Math/02_abs.html">ABS <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="07_Math/03_round.html">ROUND <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="07_Math/04_rankx.html">RANKX <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-header">
+        <div class="cat-icon">🏗️</div>
+        <div class="cat-title">08. Table Manipulation</div>
+      </div>
+      <div class="link-list">
+        <a class="lesson-btn" href="08_Table/01_summarize.html">SUMMARIZE <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="08_Table/02_addcolumns.html">ADDCOLUMNS <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="08_Table/03_crossjoin.html">CROSSJOIN <span class="status-dot">⚪</span></a>
+        <a class="lesson-btn" href="08_Table/04_union.html">UNION <span class="status-dot">⚪</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer></footer>
+
+  <script src="../assets/app.js"></script>
+  <script>
+    // Initialize Header/Footer
+    // Args: Title, Path to Root
+    App.initLayout("DAX Roadmap", "../");
+  </script>
+
+</body>
+</html>
