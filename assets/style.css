@@ -1,7 +1,309 @@
-.card {
-    background: #1e293b;        /* Dark blue-grey background */
-    border: 1px solid #334155;  /* Thin border line */
-    border-radius: 1rem;        /* Rounded corners */
-    padding: 1.5rem;            /* Space inside the box */
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* The drop shadow effect */
+/* assets/style.css */
+
+/* 1. VARIABLES (The Color Palette) */
+:root {
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --text-primary: #f8fafc;
+    --text-dim: #94a3b8;
+    --accent: #0ea5e9; /* Sky Blue */
+    --accent-hover: #0284c7;
+    --border: #334155;
+    --code-bg: #0a0f1a;
   }
+  
+  /* 2. GLOBAL RESET */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body { 
+    background: var(--bg-main);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* 3. HEADER & NAVIGATION */
+  header {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .brand-area { display: flex; align-items: center; gap: 0.5rem; }
+  .brand-icon { font-size: 1.5rem; color: var(--accent); }
+  .brand-text { font-weight: 800; font-size: 1.1rem; color: #fff; }
+  
+  .nav-group { display: flex; gap: 0.8rem; }
+  
+  .nav-link { 
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    transition: 0.2s;
+    display: flex; align-items: center; gap: 0.4rem;
+    border: 1px solid transparent;
+  }
+  
+  /* Button Variants */
+  .nav-dax { 
+    background: rgba(14, 165, 233, 0.1); 
+    color: var(--accent); 
+    border-color: rgba(14, 165, 233, 0.2); 
+  }
+  .nav-dax:hover { 
+    background: rgba(14, 165, 233, 0.2); 
+    transform: translateY(-1px); 
+  }
+  
+  .nav-main { 
+    background: transparent; 
+    color: var(--text-dim); 
+    border-color: var(--border); 
+  }
+  .nav-main:hover { 
+    color: #fff; 
+    border-color: #fff; 
+  }
+  
+  /* 4. LAYOUT CONTAINERS */
+  .pageWrapper { 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 2rem auto; 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 1.5rem; 
+    padding: 0 1rem;
+  }
+  
+  /* 5. CARDS (The Boxes) */
+  .card, .cat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  
+  .card { min-height: 600px; }
+  
+  h2 { margin-top: 0; color: #fff; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  
+  /* 6. LESSON VISUALS (Table, Code) */
+  .table-row { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    padding: 0.6rem; 
+    border-bottom: 1px solid var(--border); 
+    font-size: 0.85rem; 
+  }
+  .header { 
+    font-weight: bold; 
+    color: var(--accent); 
+    border-bottom: 2px solid var(--border); 
+    background: rgba(255,255,255,0.03); 
+  }
+  .cell-num { font-family: monospace; }
+  .row-highlight { 
+    background: rgba(34, 197, 94, 0.2); 
+    border-left: 3px solid #22c55e; 
+  }
+  
+  .codeArea { 
+    background: var(--code-bg); 
+    padding: 1rem; 
+    border-radius: 0.5rem; 
+    font-family: monospace; 
+    color: #d1d5db; 
+    line-height: 1.6; 
+    font-size: 0.9rem; 
+  }
+  .codeLine { 
+    padding: 2px 8px; 
+    border-radius: 4px; 
+    border-left: 3px solid transparent; 
+  }
+  .codeLine.active { 
+    background: #1e3a8a; 
+    border-left-color: #60a5fa; 
+  }
+  
+  /* Syntax Highlighting Colors */
+  .kwd { color: #c084fc; } /* Keywords (Purple) */
+  .fn { color: #60a5fa; }  /* Functions (Blue) */
+  .col { color: #facc15; } /* Columns (Yellow) */
+  .cmt { color: #6b7280; font-style: italic; } /* Comments (Gray) */
+  
+  /* 7. CONTROLS (Buttons, Toggles) */
+  .control-panel { 
+    margin-top: auto; 
+    padding-top: 1rem; 
+    border-top: 1px solid var(--border); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+  }
+  
+  .settings-row { 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+    margin-bottom: 1rem; 
+  }
+  
+  .setting-group { display: flex; align-items: center; gap: 0.5rem; }
+  .setting-label { 
+    font-size: 0.75rem; 
+    color: var(--text-dim); 
+    text-transform: uppercase; 
+    font-weight: 600; 
+  }
+  
+  .toggle-group { 
+    display: flex; 
+    background: var(--bg-main); 
+    border-radius: 0.5rem; 
+    padding: 2px; 
+    border: 1px solid var(--border); 
+  }
+  .toggle-opt { 
+    padding: 0.3rem 0.6rem; 
+    cursor: pointer; 
+    border-radius: 0.3rem; 
+    font-size: 0.75rem; 
+    color: var(--text-dim); 
+    user-select: none;
+  }
+  .toggle-opt.selected { 
+    background: var(--border); 
+    color: #fff; 
+    font-weight: bold; 
+  }
+  .toggle-group.disabled-area { 
+    opacity: 0.4; 
+    pointer-events: none; 
+    filter: grayscale(1); 
+  }
+  
+  /* Action Buttons */
+  .action-btns { display: flex; gap: 0.8rem; }
+  button.action { 
+    flex: 1; 
+    background: #334155; 
+    color: white; 
+    border: 1px solid #475569; 
+    padding: 0.6rem; 
+    border-radius: 0.5rem; 
+    cursor: pointer; 
+    font-weight: 500; 
+    transition: 0.2s; 
+  }
+  button.action:hover { background: #475569; }
+  button.primary { 
+    background: var(--accent); 
+    color: #000; 
+    border: none; 
+  }
+  button.primary:hover { background: var(--accent-hover); }
+  
+  /* 8. ANIMATION BUBBLES & BARS */
+  .calculation-box {
+    margin-top: 1rem; 
+    padding: 1rem; 
+    border: 1px dashed var(--border);
+    border-radius: 0.5rem; 
+    background: rgba(0,0,0,0.3); 
+    font-family: monospace; 
+    color: var(--text-dim);
+    min-height: 60px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    position: relative; 
+    overflow: hidden;
+  }
+  
+  .progress-track { 
+    width: 100%; 
+    height: 4px; 
+    background: #0f172a; 
+    border-radius: 0 0 4px 4px; 
+    overflow: hidden; 
+    margin-top: -4px; 
+    position: relative; 
+    z-index: 10; 
+  }
+  .progress-fill { 
+    height: 100%; 
+    width: 0%; 
+    background: var(--accent); 
+  }
+  
+  .total-bubble {
+    background: var(--accent); 
+    color: #000; 
+    font-weight: bold;
+    padding: 0.5rem 1rem; 
+    border-radius: 2rem; 
+    margin-left: auto;
+    opacity: 0; 
+    transform: scale(0.5); 
+    transition: 0.4s;
+  }
+  .total-bubble.show { opacity: 1; transform: scale(1); }
+  
+  /* 9. TOAST NOTIFICATION */
+  #toast {
+    visibility: hidden; 
+    min-width: 250px; 
+    background-color: #1e293b; 
+    color: #fff;
+    text-align: center; 
+    border-radius: 8px; 
+    padding: 12px; 
+    position: fixed; 
+    z-index: 1000;
+    left: 50%; 
+    bottom: 30px; 
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+    border: 1px solid #ef4444; 
+    font-size: 0.85rem;
+  }
+  #toast.show { 
+    visibility: visible; 
+    animation: fadein 0.5s, fadeout 0.5s 4.5s; 
+  }
+  
+  @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+  @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+  
+  /* 10. FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+    background: var(--bg-card);
+    margin-top: auto;
+  }
+  .footer-links
