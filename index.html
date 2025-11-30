@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Data Guide | Creator 12 Academy</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* --- LANDING PAGE SPECIFIC STYLES --- */
+  
+  /* Override body layout for landing page (stack instead of split) */
+  body { display: block; }
+
+  /* Custom Header for Landing Page */
+  .landing-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem; background: var(--bg-card); border-bottom: 1px solid var(--border);
+  }
+  .landing-brand { font-size: 1.2rem; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 0.5rem; }
+  .landing-brand span { color: var(--accent); font-size: 1.5rem; }
+
+  /* Hero Section */
+  .hero {
+    text-align: center; padding: 5rem 1rem;
+    background: radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+  }
+  .hero h1 { font-size: 3rem; margin-bottom: 1rem; color: #fff; letter-spacing: -1px; }
+  .hero p { font-size: 1.1rem; color: var(--text-dim); max-width: 700px; margin: 0 auto 2rem; line-height: 1.6; }
+  .highlight { color: var(--accent); font-weight: bold; }
+
+  /* Grid Layout */
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+  /* Topic Cards */
+  .topic-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 1rem; padding: 2rem; text-decoration: none;
+    display: flex; flex-direction: column; height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  /* Enabled Card */
+  .topic-card.enabled:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    border-color: var(--accent);
+  }
+  .topic-card.enabled .icon { color: var(--accent); }
+  .topic-card.enabled .arrow { color: var(--accent); margin-top: auto; padding-top: 1.5rem; font-weight: bold; }
+
+  /* Disabled Card */
+  .topic-card.disabled { opacity: 0.5; cursor: default; }
+  .topic-card.disabled:hover { border-color: var(--border); transform: none; }
+  
+  .badge {
+    position: absolute; top: 1rem; right: 1rem;
+    background: #334155; color: #94a3b8;
+    font-size: 0.7rem; font-weight: bold;
+    padding: 0.25rem 0.6rem; border-radius: 1rem;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+
+  .icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .title { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .desc { color: var(--text-dim); font-size: 0.95rem; line-height: 1.5; }
+
+  /* Custom Footer for Landing */
+  .landing-footer {
+    text-align: center; padding: 3rem 1rem; margin-top: 3rem;
+    border-top: 1px solid var(--border); color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  .landing-footer a { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); transition: 0.2s; }
+  .landing-footer a:hover { color: #fff; border-bottom-style: solid; }
+
+  @media(max-width: 600px) {
+    .hero h1 { font-size: 2rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="landing-header">
+    <div class="landing-brand">
+      <span>📊</span> Visual Data Guide
+    </div>
+    <nav class="nav-group">
+      <a href="about.html" class="nav-link nav-main">
+        <span>👨‍💻</span> About Me
+      </a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Master Data Logic Visually</h1>
+    <p>
+      Don't just read the documentation. <strong>Watch</strong> how the engine calculates results row-by-row.<br>
+      Interactive stories for <span class="highlight">DAX</span>, <span class="highlight">Excel</span>, and <span class="highlight">SQL</span>.
+    </p>
+  </section>
+
+  <div class="container">
+    <div class="grid">
+
+      <a href="DAX/index.html" class="topic-card enabled">
+        <div class="icon">📈</div>
+        <div class="title">DAX Masterclass</div>
+        <div class="desc">
+          Deep dive into Context Transition, Iterators (SUMX), and Time Intelligence with step-by-step animations.
+        </div>
+        <div class="arrow">Start Learning →</div>
+      </a>
+
+      <div class="topic-card disabled">
+        <span class="badge">Coming Soon</span>
+        <div class="icon">📗</div>
+        <div class="title">Excel Formulas</div>
+        <div class="desc">
+          Visualize Dynamic Arrays, LAMBDA, XLOOKUP, and advanced logic modeling.
+        </div>
+      </div>
+
+      <div class="topic-card disabled">
+        <span class="badge">Coming Soon</span>
+        <div class="icon">🗄️</div>
+        <div class="title">SQL Database</div>
+        <div class="desc">
+          Interactive breakdowns of Joins, Window Functions, and CTEs.
+        </div>
+      </div>
+
+      <div class="topic-card disabled">
+        <span class="badge">Coming Soon</span>
+        <div class="icon">⚙️</div>
+        <div class="title">M Language</div>
+        <div class="desc">
+          Master Power Query logic and data transformation steps visually.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="landing-footer">
+    <p>
+      <strong>Visual Data Guide</strong> by 
+      <a href="https://www.linkedin.com/company/109928041" target="_blank">Creator 12 Academy</a>
+    </p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+      Created by 
+      <a href="https://www.linkedin.com/in/iamnkannan/" target="_blank">Kannan N</a>
+    </p>
+  </footer>
+
+</body>
+</html>
