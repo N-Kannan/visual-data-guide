@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel Masterclass | Roadmap</title>
+<link rel="stylesheet" href="../assets/style.css"> 
+<style>
+  /* --- 1. GLOBAL VARIABLES & THEME --- */
+  :root { 
+    --accent: #107c41; /* Excel Green */
+    --bg-body: #f3f4f6; /* Soft Gray */
+    --bg-bars: #ebf8f2; /* Mint Green Header/Footer */
+    --bg-card: #ffffff;
+    --text-main: #333;
+    --text-dim: #666;
+    --border: #d1fae5;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- 2. HEADER VISIBILITY FIXES --- */
+  header {
+    background: var(--bg-bars);
+    padding: 1.5rem 3rem; 
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 2px 10px rgba(16, 124, 65, 0.05);
+    margin-bottom: 2rem;
+    
+    /* FLEXBOX for alignment */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* !!! CRITICAL FIX: FORCE BLACK TEXT IN HEADER !!! */
+  .brand-area {
+    display: flex;
+    align-items: center;
+    color: #000000 !important; /* Forces "Excel Roadmap" to Black */
+  }
+
+  /* Target the injected classes from App.js */
+  .brand-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #000000 !important; /* Black text */
+    letter-spacing: -0.5px;
+  }
+
+  .brand-icon {
+    font-size: 1.8rem;
+    margin-right: 12px;
+    color: #000000 !important; /* Black Icon */
+    font-weight: bold;
+  }
+
+  /* Header Navigation Links */
+  .nav-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .nav-link {
+    text-decoration: none;
+    color: #1f2937 !important; /* Dark Grey link text */
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #cbd5e1;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover {
+    background: #fff;
+    color: var(--accent) !important;
+    border-color: var(--accent);
+  }
+
+  /* --- 3. LAYOUT --- */
+  .container { 
+    max-width: 1600px; 
+    width: 95%; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
+    flex: 1; 
+  }
+
+  .section-title {
+    margin-top: 4rem; 
+    margin-bottom: 1.5rem; 
+    font-size: 1.6rem; 
+    color: #1e293b;
+    border-left: 6px solid var(--accent); 
+    padding-left: 1rem; 
+    font-weight: 900; 
+    letter-spacing: 0.5px;
+  }
+
+  .roadmap-grid, .combined-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 1.5rem; 
+  }
+
+  /* --- 4. SEARCH BAR --- */
+  .search-wrapper {
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+    position: relative;
+  }
+  
+  #searchInput {
+    width: 100%;
+    padding: 15px 20px;
+    padding-left: 50px;
+    font-size: 1.1rem;
+    border: 2px solid #cbd5e1;
+    background-color: #fff;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    box-sizing: border-box;
+    color: #333; /* Input text color */
+  }
+
+  #searchInput:focus {
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(16, 124, 65, 0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    opacity: 0.5;
+    color: #333;
+  }
+
+  /* --- 5. CARDS & LINKS --- */
+  .cat-card {
+    background: var(--bg-card); 
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem; 
+    padding: 0;
+    display: flex; 
+    flex-direction: column;
+    transition: 0.3s; 
+    height: 100%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  }
+
+  .cat-card:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent); 
+    box-shadow: 0 10px 20px rgba(16, 124, 65, 0.1); 
+  }
+
+  a.cat-header-link {
+    text-decoration: none; display: block;
+    background: #f8fafc;
+    padding: 1rem; border-bottom: 1px solid #e2e8f0;
+    transition: 0.2s;
+    border-radius: 1rem 1rem 0 0;
+  }
+  
+  a.cat-header-link:hover { background: #f0fdf4; }
+
+  .cat-header-content { display: flex; align-items: center; gap: 0.8rem; }
+  
+  .cat-icon { 
+    font-size: 1.5rem; 
+    background: #dcfce7;
+    width: 40px; height: 40px; 
+    display: flex; align-items: center; justify-content: center; 
+    border-radius: 0.5rem; 
+    color: #14532d;
+  }
+
+  .cat-title { font-weight: 800; font-size: 1rem; color: #333; display: block; }
+
+  .link-container { padding: 1rem; flex: 1; }
+  .link-list { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  a.lesson-btn {
+    display: flex; justify-content: space-between; align-items: center;
+    text-decoration: none; color: var(--text-dim);
+    padding: 0.5rem 0.8rem; border-radius: 0.4rem; font-size: 0.85rem; 
+    font-family: 'Consolas', monospace; 
+    border: 1px solid transparent; 
+    background-color: #f8fafc;
+    transition: 0.2s;
+  }
+
+  a.lesson-btn:hover { 
+    border-color: var(--accent); 
+    color: var(--accent); 
+    background: #fff; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+
+  .status-dot { font-size: 0.7rem; opacity: 0.4; color: #ccc; }
+  a.lesson-btn.active { background-color: #ecfdf5; border-color: #10b981; color: #065f46; }
+  a.lesson-btn.active .status-dot { color: #10b981; opacity: 1; }
+
+  .combined-card { border-top: 4px solid var(--accent); }
+
+  /* --- 6. FOOTER VISIBILITY FIX --- */
+  footer { 
+    text-align: center; 
+    padding: 4rem 1rem; 
+    background: var(--bg-bars);
+    border-top: 1px solid var(--border);
+    color: #333 !important; /* Force Dark Text */
+    font-size: 0.9rem;
+    margin-top: auto; 
+  }
+  
+  /* Ensure footer links are visible too */
+  footer a { color: #107c41; text-decoration: none; font-weight: bold; }
+
+  /* Hide Controls on Menu Page */
+  #controls-mount { display: none; }
+
+  @media(max-width: 768px) {
+    .roadmap-grid, .combined-grid { grid-template-columns: 1fr; }
+    .section-title { margin-top: 2rem; font-size: 1.4rem; }
+    header { padding: 1rem; flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+  <header></header> <div class="container">
+    
+    <div style="text-align:center; margin-bottom:2rem;">
+      <h1 style="color:var(--accent); margin-bottom:0.5rem; font-size: 2.5rem;">Excel Formulas Roadmap</h1>
+      <p style="color:var(--text-dim);">The Complete Library: 100+ Formulas & Use Cases.</p>
+    </div>
+
+    <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search for a formula (e.g., VLOOKUP, SUMIFS, Pivot)...">
+    </div>
+
+    <h2 class="section-title">PART 1: The Formula Library</h2>
+    <div class="roadmap-grid">
+
+      <div class="cat-card">
+        <a href="01_Lookups/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">🔎</div><span class="cat-title">Lookup & Reference</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="01_Lookups/01_vlookup.html">VLOOKUP / HLOOKUP <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/02_xlookup.html">XLOOKUP <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/03_index_match.html">INDEX / MATCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/04_filter.html">FILTER <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/05_unique.html">UNIQUE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/06_sort.html">SORT / SORTBY <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/07_offset.html">OFFSET <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/08_indirect.html">INDIRECT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/09_choose.html">CHOOSE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="01_Lookups/10_lookup.html">LOOKUP (Legacy) <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="04_Logical/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">⚖️</div><span class="cat-title">Logical</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="04_Logical/01_if.html">IF <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/02_ifs.html">IFS <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/03_and_or.html">AND / OR / NOT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/04_xor.html">XOR <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/05_switch.html">SWITCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/06_iferror.html">IFERROR <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/07_ifna.html">IFNA <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="04_Logical/08_true.html">TRUE / FALSE <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+      
+      <div class="cat-card">
+        <a href="02_Math/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">∑</div><span class="cat-title">Math & Trig</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="02_Math/01_sum.html">SUM <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/02_sumif.html">SUMIF / SUMIFS <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/03_product.html">PRODUCT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/04_quotient.html">QUOTIENT / MOD <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/05_power.html">POWER / SQRT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/06_round.html">ROUND / UP / DOWN <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/07_ceiling.html">CEILING / FLOOR <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/08_int.html">INT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/09_abs.html">ABS <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="02_Math/10_rand.html">RAND / BETWEEN <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="06_Statistical/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">📊</div><span class="cat-title">Statistical</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="06_Statistical/01_average.html">AVERAGE / A <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/01_average.html">AVERAGEIF / S <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/02_count.html">COUNT / COUNTA <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/15_countblank.html">COUNTBLANK <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/03_countif.html">COUNTIF / S <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/04_min_max.html">MIN / MAX <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/18_large.html">LARGE / SMALL <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/13_median.html">MEDIAN / MODE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/19_stdev.html">STDEV.P / .S <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Statistical/20_rank.html">RANK.EQ / .AVG <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="03_Text/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">Aa</div><span class="cat-title">Text Functions</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="03_Text/01_trim.html">TRIM / CLEAN <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/02_left.html">LEFT / RIGHT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/03_mid.html">MID <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/04_len.html">LEN <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/05_find.html">FIND / SEARCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/06_concat.html">CONCAT / TEXTJOIN <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/07_substitute.html">SUBSTITUTE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/08_replace.html">REPLACE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/09_text.html">TEXT / VALUE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="03_Text/10_upper.html">UPPER / LOWER <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="05_Date/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">📅</div><span class="cat-title">Date & Time</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="05_Date/01_today.html">TODAY / NOW <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/02_date.html">DATE / TIME <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/03_parts.html">YEAR / MONTH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/04_timeparts.html">HOUR / MIN / SEC <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/05_datedif.html">DATEDIF <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/06_eomonth.html">EOMONTH / EDATE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/07_workday.html">WORKDAY / INTL <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/08_network.html">NETWORKDAYS <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/09_week.html">WEEKNUM / DAY <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="05_Date/10_text.html">TEXT (Date) <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="07_Financial/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">💰</div><span class="cat-title">Financial</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="07_Financial/01_pmt.html">PMT (Payments) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/02_rate.html">RATE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/03_npv.html">NPV (Net Present) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/04_irr.html">IRR <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/05_fv.html">FV (Future Value) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/06_pv.html">PV (Present Value) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Financial/07_nper.html">NPER <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="08_Information/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">ℹ️</div><span class="cat-title">Information</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="08_Information/01_ischecks.html">ISNUMBER / TEXT <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="08_Information/02_isblank.html">ISBLANK <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="08_Information/03_iserror.html">ISERROR / ISNA <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="08_Information/04_type.html">TYPE / CELL <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="08_Information/05_errortype.html">ERROR.TYPE <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card">
+        <a href="06_Arrays/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">🌊</div><span class="cat-title">Dynamic Arrays</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="06_Arrays/01_sequence.html">SEQUENCE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/02_randarray.html">RANDARRAY <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/03_transpose.html">TRANSPOSE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/04_vstack.html">VSTACK / HSTACK <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/05_tocol.html">TOCOL / TOROW <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/06_take.html">TAKE / DROP <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="06_Arrays/07_choosecols.html">CHOOSECOLS <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+      
+      <div class="cat-card">
+        <a href="09_Engineering/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">⚙️</div><span class="cat-title">Engineering</span></div>
+        </a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="09_Engineering/01_conversions.html">BIN2DEC / DEC2BIN <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="09_Engineering/02_hex.html">HEX2DEC <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="09_Engineering/03_fact.html">FACT (Factorial) <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+    </div>
+
+    <h2 class="section-title">PART 2: Syntax & Essentials</h2>
+    <div class="roadmap-grid">
+      <div class="cat-card" style="grid-column: 1 / -1;">
+        <a href="07_Essentials/index.html" class="cat-header-link">
+          <div class="cat-header-content"><div class="cat-icon">🛠️</div><span class="cat-title">Operators, Errors & Shortcuts</span></div>
+        </a>
+        <div class="link-container" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+          <a class="lesson-btn" href="07_Essentials/01_ops_math.html">Math (+ - * / ^) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/02_ops_logic.html">Logical (= > < >=) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/03_refs.html">References ($A$1 vs A1) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/04_ops_text.html">Text Join (&) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/05_wildcards.html">Wildcards (* ?) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/06_errors.html">Errors (#N/A #REF!) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/07_ranges.html">Ranges (: ,) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="07_Essentials/08_tables.html">Structured Refs ([@Col]) <span class="status-dot">○</span></a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">PART 3: Combined Formulas (Advanced)</h2>
+    <div class="combined-grid">
+      
+      <div class="cat-card combined-card">
+        <a href="Combined_Formulas/01_Adv_Lookups/index.html" class="cat-header-link"><div class="cat-header-content"><div class="cat-icon">🔎</div><span class="cat-title">Advanced Lookups</span></div></a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/01_index_match.html">01. INDEX + MATCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/02_index_match_match.html">02. INDEX + MATCH + MATCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/03_vlookup_choose.html">03. VLOOKUP + CHOOSE <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/04_xlookup_nested.html">04. XLOOKUP + XLOOKUP <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/05_vlookup_match.html">05. VLOOKUP + MATCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/06_multi_criteria.html">06. Multiple Criteria (Array) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/07_lookup_max.html">07. Lookup MAX Value <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/08_lookup_last.html">08. Lookup Last Value <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/09_hyperlink.html">09. Hyperlink Lookup <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/10_image.html">10. Image Lookup <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/11_case_sensitive.html">11. Case Sensitive Lookup <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/12_fuzzy.html">12. Closest Match (Fuzzy) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/13_wildcard.html">13. Wildcard Search (*) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/14_offset_match.html">14. OFFSET + MATCH <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/01_Adv_Lookups/15_indirect.html">15. INDIRECT + VLOOKUP <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card combined-card">
+        <a href="Combined_Formulas/02_Text_Clean/index.html" class="cat-header-link"><div class="cat-header-content"><div class="cat-icon">🧹</div><span class="cat-title">Data Cleaning</span></div></a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/01_clean.html">01. TRIM + CLEAN + PROPER <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/02_first_name.html">02. Extract First Name <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/03_last_name.html">03. Extract Last Name <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/04_middle.html">04. Extract Middle Text <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/05_count_words.html">05. Count Words <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/06_breaks.html">06. Remove Line Breaks <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/07_numbers.html">07. Extract Numbers Only <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/08_split_rows.html">08. Split Cell to Rows <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/09_kpi.html">09. Dynamic KPI Sentence <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/10_email.html">10. Get Username from Email <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/11_mask.html">11. Mask Data (****) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/12_initials.html">12. Generate Initials <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/13_reverse.html">13. Reverse Text <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/14_spaces.html">14. Remove Double Spaces <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/02_Text_Clean/15_url.html">15. Parse URL Domain <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card combined-card">
+        <a href="Combined_Formulas/03_Logic_Math/index.html" class="cat-header-link"><div class="cat-header-content"><div class="cat-icon">🧠</div><span class="cat-title">Complex Logic</span></div></a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/01_sumproduct.html">01. SUMPRODUCT Logic <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/02_nested_alt.html">02. Nested IF Alternatives <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/03_weighted.html">03. Weighted Averages <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/04_offset.html">04. Dynamic Sum (OFFSET) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/05_commission.html">05. Tiered Commission <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/06_ifs.html">06. IFS vs Nested IF <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/07_switch_true.html">07. SWITCH(TRUE) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/08_between.html">08. Count Between Dates <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/09_highlight.html">09. Highlight Odd Rows <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/10_3d_sum.html">10. 3D Sum (Multi-Sheet) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/11_min_nz.html">11. Min Non-Zero <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/12_visible.html">12. Sum Visible Rows <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/13_rank_group.html">13. Rank within Group <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/14_unique_cond.html">14. Count Unique (Cond) <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/03_Logic_Math/15_top_avg.html">15. Average Top 5 <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card combined-card">
+        <a href="Combined_Formulas/04_Date_Time/index.html" class="cat-header-link"><div class="cat-header-content"><div class="cat-icon">⏳</div><span class="cat-title">Date & Projects</span></div></a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/01_project.html">01. Project Due Date <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/02_age.html">02. Age Calculation <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/03_remaining.html">03. Days Remaining <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/04_fiscal_year.html">04. Fiscal Year <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/05_fiscal_q.html">05. Fiscal Quarter <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/06_first_day.html">06. First Day Next Month <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/07_last_day.html">07. Last Day Month <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/08_day_name.html">08. Get Day Name <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/09_week_start.html">09. Week Start Date <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/10_overlap.html">10. Overlapping Dates <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/11_time_diff.html">11. Time Difference <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/12_convert.html">12. Convert Text Date <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/13_anniversary.html">13. Next Anniversary <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/14_nearest.html">14. Nearest Workday <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/04_Date_Time/15_gantt.html">15. Gantt Chart Data <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+      <div class="cat-card combined-card">
+        <a href="Combined_Formulas/05_Dynamic_Arrays/index.html" class="cat-header-link"><div class="cat-header-content"><div class="cat-icon">✨</div><span class="cat-title">Dashboards</span></div></a>
+        <div class="link-container"><div class="link-list">
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/01_search.html">01. Search Bar <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/02_top10.html">02. Top 10 Dynamic <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/03_dropdown.html">03. Dependent Dropdown <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/04_duplicates.html">04. Extract Duplicates <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/05_compare.html">05. Compare Lists <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/06_transpose.html">06. Transpose Stack <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/07_calendar.html">07. Calendar Gen <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/08_top_bottom.html">08. Top N Bottom N <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/09_random.html">09. Random Sample <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/10_running.html">10. Running Total Array <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/11_split.html">11. Split Cols <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/12_unpivot.html">12. Unpivot Data <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/13_sheet.html">13. Sheet Index <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/14_image.html">14. Dynamic Image <span class="status-dot">○</span></a>
+          <a class="lesson-btn" href="Combined_Formulas/05_Dynamic_Arrays/15_lambda.html">15. Custom LAMBDA <span class="status-dot">○</span></a>
+        </div></div>
+      </div>
+
+    </div>
+    
+    <div style="margin-top: 4rem; text-align: center;">
+      <a href="../index.html" class="nav-link" style="display:inline-block; border:1px solid var(--border); padding: 1rem 2rem; font-size: 1rem; border-radius: 8px; text-decoration: none; color: #333; background: #fff;">
+        ⬅ Back to Main Home
+      </a>
+    </div>
+
+  </div>
+
+  <footer></footer>
+  <div id="controls-mount" style="display:none;"></div>
+
+  <script src="../assets/app.js"></script>
+  <script>
+    App.initLayout("Excel Roadmap", "../");
+    App.loadProgress();
+
+    // --- SIMPLE SEARCH FUNCTION ---
+    const searchInput = document.getElementById('searchInput');
+    const allButtons = document.querySelectorAll('.lesson-btn');
+
+    searchInput.addEventListener('keyup', (e) => {
+        const term = e.target.value.toLowerCase();
+
+        allButtons.forEach(btn => {
+            const text = btn.textContent.toLowerCase();
+            // Show if match, Hide if not
+            if(text.includes(term)) {
+                btn.style.display = 'flex';
+                // Also ensure the parent card is visible if it was hidden
+                btn.closest('.cat-card').style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+
+        // Optional: Hide empty categories
+        document.querySelectorAll('.cat-card').forEach(card => {
+            const visibleLinks = card.querySelectorAll('.lesson-btn[style="display: flex;"]');
+            if(visibleLinks.length === 0 && term !== "") {
+                card.style.display = 'none';
+            } else {
+                card.style.display = 'flex';
+            }
+        });
+    });
+  </script>
+</body>
+</html>
